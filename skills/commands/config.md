@@ -1,23 +1,19 @@
 ---
-description: View or change Answer me with HTML settings — auto-open browser, default theme, light/dark, STE strictness, text size, video voice, update notices
-argument-hint: "[open|theme|mode|style|scale|voice|update_check|close_after_reply <value>] | reset [key]"
-allowed-tools: Bash(node *)
+description: Customize workspace CSS for directly authored HTML answers
+argument-hint: "[visual style description]"
 ---
 
-## Current settings
-
-!`node "${CLAUDE_PLUGIN_ROOT}/answer-me-with-html/scripts/am.mjs" config`
-
-## What to do
+Read the sibling `answer-me-with-html/SKILL.md` and follow its style resolution
+rules. This command no longer runs a CLI or offers theme, font-size, voice,
+update, or browser settings.
 
 User arguments: `$ARGUMENTS`
 
-CLI: `node "${CLAUDE_PLUGIN_ROOT}/answer-me-with-html/scripts/am.mjs" config …`
-
-- **No arguments**: use AskUserQuestion to let the user choose. Ask at most 4 settings at a time, these first: auto-open the browser (open), default theme (theme), light/dark (mode), writing check (style). Mark the current value in the options. After the user chooses, run `config set` for each setting.
-- **`<key> <value>`** (for example `open off`): run `config set <key> <value>` directly.
-- **`reset` or `reset <key>`**: run `config reset [key]`.
-- **Text size** (`scale`): a number from 0.8 to 1.5 in steps of 0.05; 1.2 makes text 20% larger. Diagrams and charts grow with it.
-- **Natural language** (for example "stop opening the browser"): convert it to the matching key and value, then run it.
-
-After the change, say in one or two sentences what changed. Settings take effect immediately. Do not generate an explainer page.
+- With no arguments, report whether the workspace stylesheet or the global
+  default is active. Ask what visual style the user wants.
+- With a style description, update
+  `<workspace-root>/answer-with-html-style/style.css` as a complete stylesheet,
+  preserving the shared class contract and unrelated customizations.
+- Change `<skill-directory>/styles/global.css` only when the user explicitly asks
+  to change the global default. Project CSS still takes precedence.
+- Do not generate a page unless a preview is requested. Report the CSS path.

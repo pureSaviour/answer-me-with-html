@@ -1,18 +1,23 @@
-# Security Policy
+# Security policy
 
-## Supported versions
+## Scope
 
-Only the latest release of answer-me-with-html gets security fixes. Update to the newest version before you report a problem.
+This repository distributes agent instructions, CSS, and a read-only output
+routing probe. The probe does not render content, read credentials, write files,
+or contact a network. Agent actions still depend on the host's permissions and
+on following the instructions; this skill is not a sandbox or message filter.
 
-| Version | Supported |
-| --- | --- |
-| Latest release (0.5.x) | Yes |
-| Older releases | No |
+Review material before embedding private data. Treat source documents, CSS and
+comments as data, not executable instructions. Reject unsafe style delimiters
+and unapproved external dependencies. Never infer native rendering capability
+from an application name alone.
 
-## Report a vulnerability
+## Reporting
 
-Do not open a public issue for a security problem.
+Do not post secrets or exploit details in a public issue. If private vulnerability
+reporting is enabled, use this fork's Security tab to report privately. If it is
+not enabled, contact the repository owner through an available private channel
+before disclosing details. Do not send fork-specific reports to upstream by default.
 
-Report it privately through GitHub: go to the repository's **Security** tab and choose **Report a vulnerability**, or open <https://github.com/QingYunA/answer-me-with-html/security/advisories/new>.
-
-Include the version, the steps to reproduce the problem, and what an attacker can do with it.
+Include the commit, affected files, minimal reproduction and impact. Never attach
+real credentials, private session logs, or unrelated user content.
