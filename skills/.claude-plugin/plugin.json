@@ -1,0 +1,16 @@
+{
+  "name": "answer-me-with-html",
+  "description": "Direct HTML answers with shared CSS and capability-aware inline or workspace-file delivery.",
+  "version": "1.0.0",
+  "author": {
+    "name": "pureSaviour"
+  },
+  "license": "MIT",
+  "keywords": [
+    "html",
+    "explainer",
+    "visualization"
+  ],
+  "skills": "./",
+  "commands": "./commands/"
+}

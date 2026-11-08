@@ -124,6 +124,17 @@ test('plugin metadata and lockfile match the dependency-free package', () => {
   assert.equal(market.owner.name, 'pureSaviour');
   assert.equal(market.plugins[0].version, pkg.version);
   assert.equal(market.plugins[0].source, './skills');
+  const plugin = JSON.parse(read('skills/.claude-plugin/plugin.json'));
+  assert.equal(plugin.name, market.plugins[0].name);
+  assert.equal(plugin.version, pkg.version);
+  assert.equal(plugin.author.name, market.owner.name);
+  assert.equal(plugin.skills, './');
+  assert.equal(plugin.commands, './commands/');
+  const pluginRoot = new URL(`${market.plugins[0].source}/`, root);
+  assert.equal(existsSync(new URL(`${plugin.skills}answer-me-with-html/SKILL.md`, pluginRoot)), true);
+  for (const command of ['config', 'clean']) {
+    assert.equal(existsSync(new URL(`${plugin.commands}${command}.md`, pluginRoot)), true);
+  }
   const lock = JSON.parse(read('package-lock.json'));
   assert.equal(lock.version, pkg.version);
   assert.equal(lock.packages[''].version, pkg.version);
